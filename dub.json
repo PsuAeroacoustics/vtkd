@@ -1,0 +1,54 @@
+{
+	"name": "vtkd",
+	"description": "A shim library for using parts of libvtk in D",
+	"copyright": "Copyright © 2019, Robert F. Rau II (Pennsylvania State University)",
+	"authors": ["Robert F. Rau II"],
+	"targetType": "library",
+	"lflags": ["-L${ALBM_PACKAGE_DIR}/vtkd/build", "-lvtkFiltersCore-7.1", "-lvtkCommonCore-7.1", "-lvtkCommonDataModel-7.1", "-lvtkCommonExecutionModel-7.1", "-lvtkCommonMath-7.1", "-lvtkCommonMisc-7.1", "-lvtkCommonSystem-7.1", "-lvtkCommonTransforms-7.1", "-lvtkIOXML-7.1", "-lvtkParallelCore-7.1", "-lvtkIOParallelXML-7.1", "-lvtk_shim", "-lstdc++"],
+	"preBuildCommands": ["mkdir $VTKD_PACKAGE_DIR/cmake/build ; cd $VTKD_PACKAGE_DIR/cmake/build ; cmake ../ -DBUILD_TYPE=$BUILD_TYPE; make"],
+    "buildTypes": {
+		"unittest": {
+			"buildOptions": ["debugMode", "debugInfo", "unittests"],
+			"versions": ["openmpi"]
+		},
+		"unittest-native": {
+			"buildOptions": ["releaseMode", "debugInfo", "unittests", "inline", "optimize"],
+			"versions": ["openmpi"],
+			"dflags": ["-mcpu=native"],
+			"dflags-ldc": ["-linkonce-templates", "--lowmem"]
+		},
+		"debug": {
+			"buildOptions": ["debugMode", "debugInfo"],
+			"dflags": ["-vtls"]
+		},
+		"debug-openmpi": {
+			"buildOptions": ["debugMode", "debugInfo"],
+			"versions": ["openmpi"],
+			"dflags": ["-vtls"]
+		},
+		"release": {
+			"buildOptions": ["releaseMode", "inline", "debugInfo", "optimize"],
+			"dmd-dflags": ["-mcpu=native"]
+		},
+		"ldc-release": {
+			"buildOptions": ["releaseMode", "inline", "debugInfo"],
+			"dflags": ["-O3", "-enable-cross-module-inlining", "-mcpu=native"]
+		},
+		"ldc-release-no512": {
+			"buildOptions": ["releaseMode", "inline"],
+			"dflags": ["-O3", "-enable-cross-module-inlining", "-mcpu=native", "-mattr=-avx512f"]
+		},
+		"ldc-release-noavx2": {
+			"buildOptions": ["releaseMode", "inline"],
+			"dflags": ["-O3", "-enable-cross-module-inlining", "-mcpu=native", "-mattr=-avx512f,-avx2"]
+		},
+		"ldc-release-fast-math": {
+			"buildOptions": ["releaseMode", "inline"],
+			"dflags": ["-O3", "-enable-cross-module-inlining", "-mcpu=native", "-ffast-math"]
+		},
+		"ldc-release-fast-math-no512": {
+			"buildOptions": ["releaseMode", "inline"],
+			"dflags": ["-O3", "-enable-cross-module-inlining", "-mcpu=native", "-ffast-math", "-mattr=-avx512f"]
+		}
+    }
+}
