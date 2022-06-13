@@ -12,7 +12,7 @@ elseif(${BUILD_TYPE} MATCHES "release")
 endif()
 
 find_package(VTK COMPONENTS vtkCommonCore vtkCommonDataModel vtkIOXML)
-add_library(vtk_shim STATIC ../source/vtkd/vtk.cpp)
+add_library(vtk_shim STATIC ../source/vtkd/vtkd.cpp)
 
 set_property(TARGET vtk_shim PROPERTY CXX_STANDARD 20)
 
