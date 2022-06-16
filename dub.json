@@ -4,7 +4,7 @@
 	"copyright": "Copyright © 2019, Robert F. Rau II (Pennsylvania State University)",
 	"authors": ["Robert F. Rau II"],
 	"targetType": "library",
-	"lflags": ["-L${VTKD_PACKAGE_DIR}/cmake/build", "-lvtkFiltersCore-7.1", "-lvtkCommonCore-7.1", "-lvtkCommonDataModel-7.1", "-lvtkCommonExecutionModel-7.1", "-lvtkCommonMath-7.1", "-lvtkCommonMisc-7.1", "-lvtkCommonSystem-7.1", "-lvtkCommonTransforms-7.1", "-lvtkIOXML-7.1", "-lvtkParallelCore-7.1", "-lvtkIOParallelXML-7.1", "-lvtk_shim", "-lstdc++"],
+	"lflags": ["-L${VTKD_PACKAGE_DIR}/cmake/build", "-lvtkFiltersCore-9.1", "-lvtkCommonCore-9.1", "-lvtkCommonDataModel-9.1", "-lvtkCommonExecutionModel-9.1", "-lvtkCommonMath-9.1", "-lvtkCommonMisc-9.1", "-lvtkCommonSystem-9.1", "-lvtkCommonTransforms-9.1", "-lvtkIOXML-9.1", "-lvtkParallelCore-9.1", "-lvtkIOParallelXML-9.1", "-lvtk_shim", "-lstdc++"],
 	"preBuildCommands": ["mkdir $VTKD_PACKAGE_DIR/cmake/build ; cd $VTKD_PACKAGE_DIR/cmake/build ; cmake ../ -DBUILD_TYPE=$BUILD_TYPE; make"],
     "buildTypes": {
 		"debug": {
