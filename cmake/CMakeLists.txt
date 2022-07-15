@@ -25,4 +25,4 @@ else()
 	target_include_directories(vtk_shim PRIVATE ${VTK_INCLUDE_DIRS})
 endif()
 
-target_compile_options(vtk_shim PRIVATE -fPIE)
+target_compile_options(vtk_shim PRIVATE -fPIE -fPIC)
