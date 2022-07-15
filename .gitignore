@@ -1,0 +1,11 @@
+.dub
+.vscode
+*.asm
+*.h
+dub.selections.json
+*.png
+*.o
+build
+*.out
+libvtkd.a
+
