@@ -67,8 +67,12 @@ namespace vtkd {
 		::vtkPoints* GetPoints();
 		static vtkPoints* New();
 		static vtkPoints* New(int dataType);
+		void Delete();
 	};
 
+	void vtkPoints::Delete() {
+		points->Delete();
+	}
 
 	void vtkPoints::Initialize() {
 		assert(points != nullptr);
@@ -115,9 +119,14 @@ namespace vtkd {
 	public:
 		void SetPoints(vtkPoints* points);
 		void SetDimensions(int i, int j, int k);
-		
+		void Delete();
+
 		static vtkStructuredGrid* New();
 	};
+
+	void vtkStructuredGrid::Delete() {
+		structured_grid->Delete();
+	}
 
 	void vtkStructuredGrid::SetPoints(vtkPoints* points) {
 		assert(structured_grid != nullptr);
@@ -148,6 +157,7 @@ namespace vtkd {
 		void SetComponentName(long component, const char* name);
 		void InsertTuple1(long tupleIdx, double value);
 		void InsertTuple3(long tupleIdx, double val0, double val1, double val2);
+		void Delete();
 
 		void SetTuple1(long tupleIdx, double value);
 		void SetTuple3(long tupleIdx, double val0, double val1, double val2);
@@ -155,6 +165,9 @@ namespace vtkd {
 		static vtkDoubleArray* New();
 	};
 
+	void vtkDoubleArray::Delete() {
+		double_array->Delete();
+	}
 	void vtkDoubleArray::SetNumberOfComponents(int num) {
 		assert(double_array != nullptr);
 		double_array->SetNumberOfComponents(num);
@@ -211,9 +224,14 @@ namespace vtkd {
 
 		void InsertTuple1(long tupleIdx, double value);
 		void InsertTuple3(long tupleIdx, double val0, double val1, double val2);
+		void Delete();
 
 		static vtkDataArray* CreateDataArray(int dataType);
 	};
+
+	void vtkDataArray::Delete() {
+		data_array->Delete();
+	}
 
 	void vtkDataArray::InsertTuple1(long tupleIdx, double value) {
 		assert(data_array != nullptr);
@@ -298,8 +316,13 @@ namespace vtkd {
 		vtkPointData* GetPointData();
 		vtkCellData* GetCellData();
 		void Allocate(long numCells);
+		void Delete();
 		static vtkUnstructuredGrid* New();
 	};
+
+	void vtkUnstructuredGrid::Delete() {
+		grid->Delete();
+	}
 
 	vtkUnstructuredGrid* vtkUnstructuredGrid::New() {
 		return new vtkUnstructuredGrid();
@@ -351,9 +374,13 @@ namespace vtkd {
 		void SetFileName(const char* filename);
 		void SetInputData(vtkStructuredGrid* data);
 		int Write();
-
+		void Delete();
 		static vtkXMLStructuredGridWriter* New();
 	};
+
+	void vtkXMLStructuredGridWriter::Delete() {
+		writer->Delete();
+	}
 
 	void vtkXMLStructuredGridWriter::SetFileName(const char* filename) {
 		writer->SetFileName(filename);
@@ -387,10 +414,15 @@ namespace vtkd {
 		void SetInputData(int i, vtkUnstructuredGrid* data);
 		void SetDataModeToAscii();
 		int Write();
+		void Delete();
 
 		static vtkXMLUnstructuredGridWriter* New();
 	};
 
+	void vtkXMLUnstructuredGridWriter::Delete() {
+		writer->Delete();
+	}
+	
 	void vtkXMLUnstructuredGridWriter::SetFileName(const char* filename) {
 		assert(writer != nullptr);
 		writer->SetFileName(filename);
@@ -494,9 +526,16 @@ namespace vtkd {
 		void SetInputData(int i, vtkUnstructuredGrid* data);
 
 		void RemoveAllInputs();
+
+		void Delete();
+
 		vtkUnstructuredGrid* GetOutput();
 		static vtkAppendFilter* New();
 	};
+
+	void vtkAppendFilter::Delete() {
+		append_filter->Delete();
+	}
 
 	void vtkAppendFilter::Update() {
 		assert(append_filter != nullptr);

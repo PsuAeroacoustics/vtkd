@@ -20,10 +20,12 @@ extern(C++, vtkd) {
 		@nogc void SetInputData(int i, vtkUnstructuredGrid* data);
 		@nogc void RemoveAllInputs();
 		@nogc vtkUnstructuredGrid* GetOutput();
+		@nogc void Delete();
 		@nogc static vtkAppendFilter* New();
 	}
 
 	extern(C++, class) struct vtkPoints {
+		@nogc void Delete();
 		@nogc void Initialize();
 		@nogc bool Allocate(vtkIdType size);
 		@nogc vtkIdType InsertNextPoint(const double x, const double y, const double z);
@@ -35,6 +37,7 @@ extern(C++, vtkd) {
 	}
 
 	extern(C++, class) struct vtkStructuredGrid {
+		@nogc void Delete();
 		@nogc void SetPoints(vtkPoints* points);
 		@nogc void SetDimensions(int i, int j, int k);
 
@@ -49,6 +52,7 @@ extern(C++, vtkd) {
 		@nogc vtkIdType FindPoint(double x, double y, double z);
 		@nogc vtkCellData* GetCellData();
 		@nogc vtkPointData* GetPointData();
+		@nogc void Delete();
 		@nogc static vtkUnstructuredGrid* New();
 	}
 
@@ -57,12 +61,13 @@ extern(C++, vtkd) {
 		@nogc void SetFileName(const char* filename);
 		@nogc void SetInputData(vtkStructuredGrid* data);
 		@nogc int Write();
+		@nogc void Delete();
 
 		@nogc static vtkXMLStructuredGridWriter* New();
 	}
 	
 	extern(C++, class) struct vtkXMLUnstructuredGridWriter {
-
+		@nogc void Delete();
 		@nogc void SetFileName(const char* filename);
 		@nogc void SetInputData(vtkUnstructuredGrid* data);
 		@nogc void SetInputData(int i, vtkUnstructuredGrid* data);
@@ -84,6 +89,7 @@ extern(C++, vtkd) {
 	}
 
 	extern(C++, class) struct vtkDataArray {
+		@nogc void Delete();
 		@nogc void InsertTuple1(vtkIdType tupleIdx, double value);
 		@nogc void InsertTuple3(vtkIdType tupleIdx, double val0, double val1, double val2);
 
@@ -91,6 +97,7 @@ extern(C++, vtkd) {
 	}
 
 	extern(C++, class) struct vtkDoubleArray {
+		@nogc void Delete();
 		@nogc void SetNumberOfComponents(int num);
 		@nogc void SetNumberOfTuples(vtkIdType num);
 		@nogc void SetName(const char* name);
